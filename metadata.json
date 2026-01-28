@@ -1,7 +1,0 @@
-{
-  "name": "Distributed Systems: Final Exam Mastery",
-  "description": "A comprehensive study guide for Distributed Systems students, featuring Hinglish summaries, detailed technical notes, AI-powered exam question prediction, and text-to-speech explanations.",
-  "requestFramePermissions": [
-    "microphone"
-  ]
-}
