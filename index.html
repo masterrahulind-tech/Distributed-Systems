@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Distributed Systems: The Ultimate Guide</title>
+    <title>Distributed Systems: Final Exam Mastery</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=JetBrains+Mono:wght@300;500&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
@@ -14,6 +14,7 @@
             --neon-purple: #bc13fe;
             --neon-green: #39ff14;
             --bg-dark: #020617;
+            --surface: #0f172a;
             --glass: rgba(15, 23, 42, 0.85);
             --glass-border: rgba(255, 255, 255, 0.1);
             --text-primary: #f1f5f9;
@@ -31,18 +32,10 @@
             overflow: hidden;
         }
 
-        #bg-canvas {
-            position: fixed; top: 0; left: 0; z-index: -1;
-            filter: blur(1px); opacity: 0.4;
-        }
+        #bg-canvas { position: fixed; top: 0; left: 0; z-index: -1; filter: blur(1px); opacity: 0.4; }
 
-        #app-root {
-            display: flex; height: 100vh; width: 100vw;
-            padding: 20px; gap: 20px;
-            position: relative;
-        }
+        #app-root { display: flex; height: 100vh; width: 100vw; padding: 20px; gap: 20px; position: relative; }
 
-        /* Sidebar Navigation */
         #sidebar {
             width: var(--sidebar-width);
             background: var(--glass);
@@ -56,38 +49,24 @@
         }
 
         .logo-box {
-            display: flex;
-            align-items: center; gap: 12px;
-            margin-bottom: 30px; padding: 10px;
+            display: flex; align-items: center; gap: 12px;
+            margin-bottom: 20px; padding: 10px;
             border-bottom: 1px solid var(--glass-border);
         }
 
-        .logo-wrapper {
-            width: 40px; height: 40px;
-            display: flex; align-items: center; justify-content: center;
-            position: relative;
-        }
-
-        .logo-img {
-            max-width: 100%; max-height: 100%;
-            object-fit: contain; filter: drop-shadow(0 0 5px var(--neon-blue));
-            z-index: 2;
-        }
+        .logo-wrapper { width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; }
+        .logo-img { max-width: 100%; max-height: 100%; object-fit: contain; filter: drop-shadow(0 0 5px var(--neon-blue)); }
 
         .nav-item {
-            padding: 12px 15px; border-radius: 10px;
+            padding: 10px 15px; border-radius: 10px;
             cursor: pointer; transition: var(--transition);
             display: flex; align-items: center; gap: 12px;
-            font-family: 'Orbitron', sans-serif; font-size: 13px;
+            font-family: 'Orbitron', sans-serif; font-size: 11px;
             color: var(--text-secondary); border: 1px solid transparent;
+            text-transform: uppercase;
         }
-
         .nav-item:hover { background: rgba(255,255,255,0.05); color: #fff; }
-        .nav-item.active { 
-            background: linear-gradient(90deg, rgba(0,242,255,0.1), transparent);
-            border-left: 3px solid var(--neon-blue);
-            color: var(--neon-blue);
-        }
+        .nav-item.active { background: linear-gradient(90deg, rgba(0,242,255,0.1), transparent); border-left: 3px solid var(--neon-blue); color: var(--neon-blue); }
 
         #viewport {
             flex-grow: 1; position: relative;
@@ -100,151 +79,92 @@
         }
 
         .slide {
-            position: absolute; inset: 0; padding: clamp(20px, 5vw, 60px);
+            position: absolute; inset: 0; padding: clamp(20px, 5vw, 40px);
             display: none; flex-direction: column;
             opacity: 0; transform: translateY(20px);
             transition: var(--transition);
             overflow-y: auto;
             width: 100%;
         }
-
-        .slide.active {
-            display: flex; opacity: 1; transform: translateY(0);
-        }
+        .slide.active { display: flex; opacity: 1; transform: translateY(0); }
 
         .title-huge {
             font-family: 'Orbitron', sans-serif; 
-            font-size: clamp(32px, 8vw, 64px); 
-            font-weight: 700;
+            font-size: clamp(32px, 8vw, 64px); font-weight: 700;
             line-height: 1.1; margin: 0;
             background: linear-gradient(to bottom right, #fff, var(--neon-blue));
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
 
         .section-header {
-            font-family: 'Orbitron', sans-serif; 
-            font-size: clamp(20px, 4vw, 28px);
-            margin-bottom: 20px; display: flex; align-items: center; gap: 15px;
-            color: var(--neon-blue);
+            font-family: 'Orbitron', sans-serif; font-size: clamp(18px, 4vw, 24px);
+            margin-bottom: 20px; display: flex; align-items: center; gap: 15px; color: var(--neon-blue);
         }
 
-        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; width: 100%; }
-        .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; width: 100%; }
+        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; width: 100%; }
+        .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; width: 100%; }
 
         .card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid var(--glass-border);
-            border-radius: 12px; padding: clamp(15px, 3vw, 20px);
-            transition: var(--transition);
-            cursor: pointer;
-            height: 100%;
-            position: relative;
+            background: rgba(255, 255, 255, 0.03); border: 1px solid var(--glass-border);
+            border-radius: 12px; padding: 15px;
+            transition: var(--transition); cursor: pointer; height: 100%; position: relative;
         }
-        .card:hover { 
-            border-color: var(--neon-blue); 
-            background: rgba(0, 242, 255, 0.08);
-            transform: scale(1.02);
-        }
-        .card::after {
-            content: 'Click to explain';
-            position: absolute; bottom: 10px; right: 10px;
-            font-size: 9px; color: var(--neon-purple); opacity: 0.6;
-            font-family: 'JetBrains Mono';
-        }
+        .card:hover { border-color: var(--neon-blue); background: rgba(0, 242, 255, 0.08); transform: translateY(-5px); }
+        .card::after { content: 'OPEN DIAGRAMS & NOTES'; position: absolute; bottom: 8px; right: 10px; font-size: 8px; color: var(--neon-purple); font-family: 'JetBrains Mono'; }
 
-        .card h4 { margin: 0 0 8px 0; color: var(--neon-blue); font-size: 16px; text-transform: uppercase; }
-        .card p { margin: 0; font-size: clamp(12px, 2vw, 13.5px); color: var(--text-secondary); line-height: 1.5; }
-        .card i { font-size: 20px; color: var(--neon-blue); margin-bottom: 12px; display: block; }
+        .card h4 { margin: 0 0 5px 0; color: var(--neon-blue); font-size: 14px; text-transform: uppercase; }
+        .card p { margin: 0; font-size: 12px; color: var(--text-secondary); line-height: 1.4; }
+        .card i { font-size: 18px; color: var(--neon-blue); margin-bottom: 10px; display: block; }
 
-        /* Modal / Detail Overlay */
         #explanation-modal {
-            position: fixed; inset: 0;
-            background: rgba(2, 6, 23, 0.9);
-            backdrop-filter: blur(15px);
-            z-index: 2000;
-            display: none; align-items: center; justify-content: center;
-            padding: 20px;
+            position: fixed; inset: 0; background: rgba(2, 6, 23, 0.95);
+            backdrop-filter: blur(20px); z-index: 2000;
+            display: none; align-items: center; justify-content: center; padding: 20px;
         }
-
         .modal-content {
-            background: var(--surface);
-            max-width: 600px; width: 100%;
-            border: 1px solid var(--neon-blue);
-            border-radius: 20px; padding: 40px;
-            position: relative;
-            box-shadow: 0 0 30px rgba(0, 242, 255, 0.2);
-            animation: modalIn 0.3s ease-out;
+            background: var(--surface); max-width: 900px; width: 100%; max-height: 90vh;
+            border: 1px solid var(--neon-blue); border-radius: 24px; padding: 40px;
+            position: relative; box-shadow: 0 0 50px rgba(0, 242, 255, 0.3);
+            overflow-y: auto;
         }
+        .modal-close { position: absolute; top: 25px; right: 25px; color: var(--neon-blue); font-size: 28px; cursor: pointer; }
 
-        @keyframes modalIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
+        .hinglish-box { font-size: 15px; line-height: 1.7; color: var(--text-primary); }
+        .hinglish-box h3 { font-family: 'Orbitron'; color: var(--neon-blue); margin-top: 0; text-transform: uppercase; font-size: 22px; margin-bottom: 20px; border-bottom: 1px solid var(--glass-border); padding-bottom: 10px;}
+        
+        .concept-summary { background: rgba(0, 242, 255, 0.05); border: 1px solid var(--neon-blue); padding: 20px; border-radius: 12px; margin-bottom: 25px; }
+        .concept-summary h4 { color: var(--neon-blue); margin: 0 0 10px 0; font-family: 'Orbitron'; font-size: 14px; text-transform: uppercase; }
+        .concept-summary p { margin: 0; font-style: italic; color: #fff; }
 
-        .modal-close {
-            position: absolute; top: 20px; right: 20px;
-            color: var(--neon-blue); font-size: 24px; cursor: pointer;
-        }
+        .exam-details h4 { color: var(--neon-purple); margin: 25px 0 10px 0; font-family: 'Orbitron'; font-size: 14px; text-transform: uppercase;}
+        .exam-details ul { padding-left: 20px; }
+        .exam-details li { margin-bottom: 8px; }
+        .hinglish-box b { color: var(--neon-blue); }
+        
+        .modal-diagram { background: #000; border-radius: 12px; padding: 20px; margin: 20px 0; border: 1px dashed var(--glass-border); display: flex; flex-direction: column; align-items: center; }
+        .diagram-caption { font-size: 10px; color: var(--text-secondary); margin-top: 10px; font-family: 'JetBrains Mono'; text-transform: uppercase; }
 
-        .hinglish-text {
-            font-size: 16px; line-height: 1.8; color: var(--text-primary);
-            font-family: 'Inter', sans-serif;
-        }
-        .hinglish-text b { color: var(--neon-blue); }
-
-        /* Controls */
         .controls { position: absolute; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 1100; }
-        .btn {
-            width: 48px; height: 48px; border-radius: 50%;
-            border: 1px solid var(--glass-border); background: var(--glass);
-            color: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center;
-            transition: var(--transition);
-        }
+        .btn { width: 48px; height: 48px; border-radius: 50%; border: 1px solid var(--glass-border); background: var(--glass); color: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: var(--transition); }
         .btn:hover { border-color: var(--neon-blue); background: var(--neon-blue); color: #000; }
 
-        .mobile-toggle {
-            display: none; position: fixed; top: 30px; left: 30px;
-            z-index: 1100; width: 48px; height: 48px;
-            background: var(--glass); border: 1px solid var(--glass-border);
-            border-radius: 12px; color: var(--neon-blue); font-size: 20px;
-            cursor: pointer; align-items: center; justify-content: center;
-        }
+        .mobile-toggle { display: none; position: fixed; top: 30px; left: 30px; z-index: 1100; width: 48px; height: 48px; background: var(--glass); border: 1px solid var(--glass-border); border-radius: 12px; color: var(--neon-blue); font-size: 20px; cursor: pointer; align-items: center; justify-content: center; }
 
         .social-left { position: absolute; bottom: 30px; left: 30px; z-index: 100; }
         .social-right { position: absolute; bottom: 30px; right: 140px; z-index: 100; }
-
-        .social-item {
-            display: flex; align-items: center; gap: 10px;
-            text-decoration: none; color: var(--text-secondary);
-            font-family: 'JetBrains Mono', monospace; font-size: 12px;
-            transition: var(--transition); white-space: nowrap;
-        }
-
+        .social-item { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--text-secondary); font-family: 'JetBrains Mono', monospace; font-size: 11px; transition: var(--transition); white-space: nowrap; }
         .social-item:hover { color: var(--neon-blue); text-shadow: 0 0 10px var(--neon-blue); transform: translateY(-2px); }
 
         .progress-indicator { position: absolute; bottom: 0; left: 0; height: 4px; background: var(--neon-blue); transition: width 0.3s; }
-
         .badge { display: inline-block; padding: 4px 10px; border-radius: 4px; background: rgba(0, 242, 255, 0.1); color: var(--neon-blue); font-size: 10px; font-weight: 700; text-transform: uppercase; margin-bottom: 10px; }
-
         .unit-label { color: var(--neon-purple); font-family: 'Orbitron', sans-serif; font-size: 12px; margin-bottom: 5px; }
 
-        /* Diagrams */
-        .diagram-container { background: #000; border-radius: 10px; padding: 20px; display: flex; flex-wrap: wrap; justify-content: center; align-items: center; margin-top: 15px; min-height: 150px; border: 1px dashed var(--glass-border); }
-        .ring-viz { width: 100px; height: 100px; border: 2px dashed var(--neon-blue); border-radius: 50%; position: relative; animation: rotate 10s linear infinite; }
-        @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-        .node { width: 25px; height: 25px; background: var(--neon-blue); border-radius: 50%; position: absolute; display: flex; align-items: center; justify-content: center; font-size: 9px; color: #000; font-weight: bold; }
-
-        /* Mobile Breakpoints */
         @media (max-width: 1024px) {
             #sidebar { position: fixed; left: -100%; top: 0; height: 100vh; width: 280px; border-radius: 0; }
             #sidebar.open { left: 0; }
             .mobile-toggle { display: flex; }
-            #app-root { padding: 15px; }
             .social-left, .social-right { display: none; }
             .sidebar-socials { display: flex; flex-direction: column; gap: 15px; margin-top: auto; padding: 20px 0; border-top: 1px solid var(--glass-border); }
-        }
-
-        @media (max-width: 768px) {
-            .grid-3, .grid-2 { grid-template-columns: 1fr; }
-            .slide { padding: 80px 20px 100px 20px; }
-            .controls { bottom: 20px; left: 50%; right: auto; transform: translateX(-50%); }
         }
     </style>
 </head>
@@ -255,10 +175,7 @@
     <div id="explanation-modal">
         <div class="modal-content">
             <div class="modal-close" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></div>
-            <h2 id="modal-title" style="font-family: 'Orbitron'; color: var(--neon-blue); margin-bottom: 20px; text-transform: uppercase;">Topic Explanation</h2>
-            <div id="modal-body" class="hinglish-text">
-                Explanation text goes here...
-            </div>
+            <div id="modal-body" class="hinglish-box"></div>
         </div>
     </div>
 
@@ -267,12 +184,10 @@
     </button>
 
     <div id="app-root">
-        
         <aside id="sidebar">
             <div class="logo-box">
                 <div class="logo-wrapper">
-                    <img src="https://drive.google.com/thumbnail?id=1uY7-npxkT8NStw2u79Eyj8Kbhcpxmimb&sz=w500" class="logo-img" alt="Logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                    <i class="fa-solid fa-network-wired logo-fallback"></i>
+                    <img src="https://drive.google.com/thumbnail?id=1uY7-npxkT8NStw2u79Eyj8Kbhcpxmimb&sz=w500" class="logo-img" alt="Logo">
                 </div>
                 <h2 style="font-family: 'Orbitron', sans-serif; font-size: 14px; color: #fff; margin:0;">DISTRIBUTED<br><span style="color: var(--neon-blue);">ENG.</span></h2>
             </div>
@@ -280,10 +195,10 @@
             <nav style="display: flex; flex-direction: column; gap: 5px;">
                 <div class="nav-item active" onclick="jumpTo(0)"><i class="fa-solid fa-house"></i> Overview</div>
                 <div class="nav-item" onclick="jumpTo(1)"><i class="fa-solid fa-1"></i> Unit I: Intro</div>
-                <div class="nav-item" onclick="jumpTo(4)"><i class="fa-solid fa-2"></i> Unit II: Processes</div>
-                <div class="nav-item" onclick="jumpTo(8)"><i class="fa-solid fa-3"></i> Unit III: Security</div>
-                <div class="nav-item" onclick="jumpTo(12)"><i class="fa-solid fa-4"></i> Unit IV: DFS</div>
-                <div class="nav-item" onclick="jumpTo(15)"><i class="fa-solid fa-5"></i> Unit V: Middleware</div>
+                <div class="nav-item" onclick="jumpTo(3)"><i class="fa-solid fa-2"></i> Unit II: Sync</div>
+                <div class="nav-item" onclick="jumpTo(6)"><i class="fa-solid fa-3"></i> Unit III: Resilience</div>
+                <div class="nav-item" onclick="jumpTo(9)"><i class="fa-solid fa-4"></i> Unit IV: Objects</div>
+                <div class="nav-item" onclick="jumpTo(11)"><i class="fa-solid fa-5"></i> Unit V: Advanced</div>
             </nav>
 
             <div class="sidebar-socials">
@@ -294,402 +209,705 @@
 
         <main id="viewport">
             
-            <!-- SLIDE 0: TITLE -->
             <div class="slide active" style="text-align: center; justify-content: center; align-items: center;">
-                <div class="logo-main-container" style="width: 120px; height: 120px; margin-bottom: 20px; display: flex; align-items: center; justify-content: center; position: relative;">
-                    <img src="https://drive.google.com/thumbnail?id=1uY7-npxkT8NStw2u79Eyj8Kbhcpxmimb&sz=w1000" style="max-width: 100%; filter: drop-shadow(0 0 10px var(--neon-blue)); position: relative; z-index: 2;">
-                </div>
-                <div class="badge">Interactive Guide</div>
+                <img src="https://drive.google.com/thumbnail?id=1uY7-npxkT8NStw2u79Eyj8Kbhcpxmimb&sz=w1000" style="width: 100px; margin-bottom: 20px; filter: drop-shadow(0 0 10px var(--neon-blue));">
+                <div class="badge">Comprehensive Exam Guide v3.1</div>
                 <h1 class="title-huge">DISTRIBUTED<br>SYSTEMS</h1>
-                <p style="color: var(--text-secondary); margin-top: 20px; font-size: 18px; letter-spacing: 2px;">CLICK TOPICS FOR HINGLISH EXPLANATION</p>
+                <p style="color: var(--text-secondary); margin-top: 20px; font-size: 16px; letter-spacing: 2px;">V3.1 - ENHANCED EXAM NOTES</p>
                 <div style="margin-top: 40px;">
-                    <button class="btn" style="width: auto; padding: 0 30px; border-radius: 30px;" onclick="nextSlide()">START LEARNING <i class="fa-solid fa-chevron-right" style="margin-left: 10px;"></i></button>
+                    <button class="btn" style="width: auto; padding: 0 30px; border-radius: 30px;" onclick="nextSlide()">ENTER MASTERCLASS <i class="fa-solid fa-chevron-right" style="margin-left: 10px;"></i></button>
                 </div>
             </div>
 
-            <!-- SLIDE 1: UNIT I CORE -->
+            <!-- Unit Slides (Logical Mapping) -->
             <div class="slide">
-                <div class="unit-label">UNIT I: INTRODUCTION</div>
-                <h2 class="section-header">Goals & Hardware Concepts</h2>
+                <div class="unit-label">UNIT I: FOUNDATIONS</div>
+                <h2 class="section-header">Goals & HW/SW Concepts</h2>
                 <div class="grid-3">
-                    <div class="card" onclick="explain('Goals', 'Distributed systems ka main goal hai ki user ko aisa lage ki wo ek single system use kar raha hai, bhale hi data 10 alag locations par ho. Isse <b>Transparency</b> kehte hain. Iska fayda ye hai ki aap resources ko asani se share kar sakte hain aur system ko kitna bhi bada (Scalable) bana sakte hain.')">
-                        <i class="fa-solid fa-bullseye"></i>
-                        <h4>Goals</h4>
-                        <p>Transparency, Resource Sharing & Scalability.</p>
-                    </div>
-                    <div class="card" onclick="explain('Hardware Concepts', 'Hardware do tarah ke hote hain:<br>1. <b>Multiprocessor:</b> Jahan sab CPUs ek hi memory share karte hain (Tightly Coupled).<br>2. <b>Multicomputer:</b> Jahan har CPU ki apni memory hoti hai aur wo network se connected hote hain (Loosely Coupled).')">
-                        <i class="fa-solid fa-microchip"></i>
-                        <h4>Hardware Concepts</h4>
-                        <p>Multiprocessor vs Multicomputer systems.</p>
-                    </div>
-                    <div class="card" onclick="explain('Software Concepts', 'Software models main teen hote hain:<br>1. <b>DOS:</b> Jo sare resources ko tightly control karta hai.<br>2. <b>NOS:</b> Jahan computers independent hote hain par network services share karte hain.<br>3. <b>Middleware:</b> Jo alag-alag softwares ke beech bridge ka kaam karta hai.')">
-                        <i class="fa-solid fa-layer-group"></i>
-                        <h4>Software Concepts</h4>
-                        <p>DOS, NOS & Middleware models.</p>
-                    </div>
+                    <div class="card" onclick="openTopic('goals')"><i class="fa-solid fa-bullseye"></i><h4>Goals of DS</h4><p>Transparency, Scalability, and Sharing.</p></div>
+                    <div class="card" onclick="openTopic('hardware')"><i class="fa-solid fa-microchip"></i><h4>Hardware Concepts</h4><p>Multiprocessor vs Multicomputer systems.</p></div>
+                    <div class="card" onclick="openTopic('software')"><i class="fa-solid fa-layer-group"></i><h4>Software Concepts</h4><p>DOS, NOS, Middleware breakdown.</p></div>
                 </div>
             </div>
 
-            <!-- SLIDE 2: UNIT I MODELS -->
-            <div class="slide">
-                <div class="unit-label">UNIT I: ARCHITECTURES</div>
-                <h2 class="section-header">The Client-Server Model</h2>
-                <div class="grid-2">
-                    <div class="card" onclick="explain('Client Server', 'Simple hai: Ek side <b>Client</b> hota hai jo request bhejta hai (Jaise aapka browser), aur doosri side <b>Server</b> jo request process karke jawab deta hai. Ye modern distribution ka base hai.')">
-                        <h4>Client Server Model</h4>
-                        <p>Request-reply architecture patterns.</p>
-                    </div>
-                    <div class="card" onclick="explain('RPC & RMI', '<b>RPC (Remote Procedure Call):</b> Iska matlab hai ki aap kisi doosre computer par function call kar rahe hain aur aapko network coding ki tension nahi leni. <br><b>RMI:</b> Jab hum objects (Java objects) ko remote machine par use karte hain.')">
-                        <h4>RPC & RMI</h4>
-                        <p>Remote procedures & Object invocation.</p>
-                    </div>
-                </div>
-                <div class="diagram-container">
-                    <svg width="100%" height="80" viewBox="0 0 400 80">
-                        <rect x="50" y="20" width="100" height="40" fill="none" stroke="var(--neon-blue)" />
-                        <text x="100" y="45" fill="var(--neon-blue)" font-size="12" text-anchor="middle">CLIENT</text>
-                        <line x1="150" y1="40" x2="250" y2="40" stroke="var(--neon-purple)" stroke-width="2" marker-end="url(#arrow)" />
-                        <rect x="250" y="20" width="100" height="40" fill="none" stroke="var(--neon-blue)" />
-                        <text x="300" y="45" fill="var(--neon-blue)" font-size="12" text-anchor="middle">SERVER</text>
-                    </svg>
-                </div>
-            </div>
-
-            <!-- SLIDE 3: UNIT I COMM -->
             <div class="slide">
                 <div class="unit-label">UNIT I: COMMUNICATION</div>
-                <h2 class="section-header">Messaging & Streams</h2>
-                <div class="grid-2">
-                    <div class="card" onclick="explain('Message Oriented', 'Messaging ka matlab hai asynchronous communication. Matlab sender message bhej kar apna kaam jaari rakh sakta hai, use reply ka wait karne ki zaroorat nahi hoti. Ye RabbitMQ ya Kafka jaisa hota hai.')">
-                        <i class="fa-solid fa-envelope"></i>
-                        <h4>Message Oriented</h4>
-                        <p>Asynchronous communication protocols.</p>
-                    </div>
-                    <div class="card" onclick="explain('Stream Oriented', 'Streams continuous data ke liye hote hain, jaise Audio ya Video call. Isme <b>Timing</b> bahut zaroori hai. Agar data delay hua toh video lag karega. Iske liye QoS (Quality of Service) use hoti hai.')">
-                        <i class="fa-solid fa-play"></i>
-                        <h4>Stream Oriented</h4>
-                        <p>Continuous data & QoS management.</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- SLIDE 4: UNIT II PROCESSES -->
-            <div class="slide">
-                <div class="unit-label">UNIT II: PROCESSES</div>
-                <h2 class="section-header">Threads & Code Migration</h2>
+                <h2 class="section-header">Client-Server & Invocation</h2>
                 <div class="grid-3">
-                    <div class="card" onclick="explain('Threads', 'Threads ek process ke andar chhoti branches hoti hain. Distributed systems mein threads server ki speed badhate hain kyunki wo ek saath multiple clients ko handle kar sakte hain bina wait kiye.')">
-                        <i class="fa-solid fa-code-fork"></i>
-                        <h4>Threads</h4>
-                        <p>Lightweight parallel execution units.</p>
-                    </div>
-                    <div class="card" onclick="explain('Clients & Servers', 'Distributed system mein design issues ye hote hain ki server <b>Stateful</b> ho (yaad rakhe client kaun hai) ya <b>Stateless</b> (har request nayi ho). Stateless zyada scalable hota hai.')">
-                        <i class="fa-solid fa-server"></i>
-                        <h4>Server Design</h4>
-                        <p>Stateless vs Stateful architectures.</p>
-                    </div>
-                    <div class="card" onclick="explain('Code Migration', 'Kayi baar hum program ko hi data ke paas bhej dete hain. Maan lo data 10GB ka hai, toh 10GB download karne se behtar hai ki 10KB ka program wahan bhej kar process kar lo. Isse network load kam hota hai.')">
-                        <i class="fa-solid fa-truck-ramp-box"></i>
-                        <h4>Code Migration</h4>
-                        <p>Moving execution context across nodes.</p>
-                    </div>
+                    <div class="card" onclick="openTopic('client_server')"><i class="fa-solid fa-users-viewfinder"></i><h4>Client-Server</h4><p>Traditional request-reply model.</p></div>
+                    <div class="card" onclick="openTopic('rpc_rmi')"><i class="fa-solid fa-terminal"></i><h4>RPC & RMI</h4><p>Remote Invocation and Marshaling.</p></div>
+                    <div class="card" onclick="openTopic('comm_oriented')"><i class="fa-solid fa-wave-square"></i><h4>Messaging & Streams</h4><p>Sync vs Async communication models.</p></div>
                 </div>
             </div>
 
-            <!-- SLIDE 5: UNIT II SYNC -->
             <div class="slide">
-                <div class="unit-label">UNIT II: SYNCHRONIZATION</div>
-                <h2 class="section-header">Clock Synchronization</h2>
-                <div class="grid-2">
-                    <div class="card" onclick="explain('Clock Sync', 'Alag machines par clocks alag chal sakti hain. Hum <b>Physical Sync</b> (jaise NTP) use karte hain sahi time ke liye, aur <b>Logical Sync</b> (Lamport Timestamps) events ka order decide karne ke liye.')">
-                        <i class="fa-solid fa-clock"></i>
-                        <h4>Logical vs Physical</h4>
-                        <p>Event ordering and time drift correction.</p>
-                    </div>
-                    <div class="card" onclick="explain('Mutual Exclusion', 'Maan lo ek shared printer hai. Do log ek saath print denge toh gadbad hogi. Mutual Exclusion ensure karta hai ki ek waqt par sirf ek hi process resource use kare. Iske liye <b>Centralized</b> ya <b>Distributed</b> algorithms use hote hain.')">
-                        <i class="fa-solid fa-hand-dots"></i>
-                        <h4>Mutual Exclusion</h4>
-                        <p>Resource locking in distributed nodes.</p>
-                    </div>
+                <div class="unit-label">UNIT II: PROCESS MANAGEMENT</div>
+                <h2 class="section-header">Threads & Server Design</h2>
+                <div class="grid-3">
+                    <div class="card" onclick="openTopic('threads')"><i class="fa-solid fa-code-fork"></i><h4>Threads</h4><p>Lightweight parallel units in servers.</p></div>
+                    <div class="card" onclick="openTopic('server_design')"><i class="fa-solid fa-server"></i><h4>Servers</h4><p>Concurrent vs Iterative server design.</p></div>
+                    <div class="card" onclick="openTopic('migration')"><i class="fa-solid fa-truck-ramp-box"></i><h4>Code Migration</h4><p>Moving code vs data (Mobility models).</p></div>
                 </div>
             </div>
 
-            <!-- SLIDE 6: UNIT II ELECTION -->
             <div class="slide">
-                <div class="unit-label">UNIT II: ALGORITHMS</div>
-                <h2 class="section-header">Bully & Ring Algorithms</h2>
-                <div class="grid-2">
-                    <div class="card" onclick="explain('Bully Algorithm', 'Jab leader (coordinator) fail ho jata hai, toh election hota hai. <b>Bully</b> algorithm mein jis machine ka ID sabse bada hota hai, wo doosron ko darake (message bhej ke) khud leader ban jata hai. <i>The Biggest ID Wins!</i>')">
-                        <h4>Bully Algorithm</h4>
-                        <p>High ID dominance in leader election.</p>
-                    </div>
-                    <div class="card" onclick="explain('Ring Algorithm', 'Saari machines ek circular ring mein hoti hain. Election message ring mein ghoomta hai aur active IDs collect karta hai. Jo ID sabse badi milti hai, use leader announce kar diya jata hai.')">
-                        <h4>Ring Algorithm</h4>
-                        <p>Circular token-based leader election.</p>
-                    </div>
-                </div>
-                <div class="diagram-container">
-                    <div class="ring-viz">
-                        <div class="node" style="top: 0; left: 37px;">ID:1</div>
-                        <div class="node" style="top: 37px; right: 0;">ID:2</div>
-                        <div class="node" style="bottom: 0; left: 37px;">ID:3</div>
-                        <div class="node" style="top: 37px; left: 0;">ID:4</div>
-                    </div>
+                <div class="unit-label">UNIT II: COORDINATION</div>
+                <h2 class="section-header">Sync & Mutual Exclusion</h2>
+                <div class="grid-3">
+                    <div class="card" onclick="openTopic('clocks')"><i class="fa-solid fa-clock"></i><h4>Clock Sync</h4><p>Lamport & Physical synchronization.</p></div>
+                    <div class="card" onclick="openTopic('mutex')"><i class="fa-solid fa-hand-dots"></i><h4>Mutual Exclusion</h4><p>Permission and Token based algorithms.</p></div>
+                    <div class="card" onclick="openTopic('bully_ring')"><i class="fa-solid fa-crown"></i><h4>Bully & Ring</h4><p>Leader election election logic.</p></div>
                 </div>
             </div>
 
-            <!-- SLIDE 7: UNIT II TRANSACTIONS -->
             <div class="slide">
-                <div class="unit-label">UNIT II: TRANSACTIONS</div>
-                <h2 class="section-header">Distributed Transactions</h2>
-                <div class="card" onclick="explain('Transactions', 'Transactions ensure karte hain ki ya toh saara kaam ho, ya kuch bhi na ho (Atomicity). Distributed environment mein hum <b>Two-Phase Commit (2PC)</b> use karte hain. Phase 1 mein sabse pucha jata hai (Vote) aur Phase 2 mein final commit ya rollback hota hai.')">
-                    <i class="fa-solid fa-file-invoice-dollar"></i>
-                    <h4>Atomic Transactions</h4>
-                    <p>ACID properties & 2-Phase Commit protocols.</p>
+                <div class="unit-label">UNIT II: RELIABILITY</div>
+                <h2 class="section-header">Transactions</h2>
+                <div class="card" onclick="openTopic('transactions')">
+                    <i class="fa-solid fa-file-contract"></i>
+                    <h4>Distributed Transactions</h4>
+                    <p>ACID properties and the Two-Phase Commit flow.</p>
                 </div>
             </div>
 
-            <!-- SLIDE 8: UNIT III CONSISTENCY -->
             <div class="slide">
-                <div class="unit-label">UNIT III: CONSISTENCY</div>
+                <div class="unit-label">UNIT III: RELIABILITY</div>
                 <h2 class="section-header">Consistency & Replication</h2>
                 <div class="grid-2">
-                    <div class="card" onclick="explain('Data Centric', 'Yahan focus pura data store par hota hai. Sequential consistency matlab sab users ko updates usi order mein dikhein jis order mein wo huye hain.')">
-                        <h4>Data-Centric Models</h4>
-                        <p>Sequential, Causal & FIFO consistency.</p>
-                    </div>
-                    <div class="card" onclick="explain('Client Centric', 'Yahan focus individual user par hota hai. Jaise <b>Read-Your-Writes</b>: Agar maine FB par status dala, toh agle hi pal wo mujhe dikhna chahiye, chahe baaki duniya ko thoda delay se dikhe.')">
-                        <h4>Client-Centric Models</h4>
-                        <p>Monotonic reads & write consistency.</p>
-                    </div>
+                    <div class="card" onclick="openTopic('replication')"><i class="fa-solid fa-clone"></i><h4>Object Replication</h4><p>Availability through redundant copies.</p></div>
+                    <div class="card" onclick="openTopic('consistency')"><i class="fa-solid fa-database"></i><h4>Consistency Models</h4><p>Data-centric vs Client-centric.</p></div>
                 </div>
             </div>
 
-            <!-- SLIDE 9: UNIT III FAULT TOLERANCE -->
             <div class="slide">
                 <div class="unit-label">UNIT III: FAULT TOLERANCE</div>
                 <h2 class="section-header">Resilience & Recovery</h2>
-                <div class="grid-3">
-                    <div class="card" onclick="explain('Process Resilience', 'Distributed system ko aisa banaya jata hai ki agar koi ek server crash ho jaye toh <b>Process Group</b> ke baaki members uska kaam sambhal lein. Isse system hamesha active rehta hai.')">
-                        <h4>Process Resilience</h4>
-                        <p>Failure masking & node redundancy.</p>
-                    </div>
-                    <div class="card" onclick="explain('Introduction to Fault Tolerance', 'System ki ability ki wo faults (errors) ke bawajood chalta rahe. Hum <b>k-fault tolerance</b> aim karte hain, jahan k server fail hone par bhi kaam na ruke.')">
-                        <h4>Fault Tolerance</h4>
-                        <p>Error handling & reliability goals.</p>
-                    </div>
-                    <div class="card" onclick="explain('Recovery', 'Crash ke baad wapas aane ke do raaste hain: <br>1. <b>Backward:</b> Checkpoint (save point) par wapas jana. <br>2. <b>Forward:</b> Nayi state par skip karke fix karna.')">
-                        <h4>Recovery</h4>
-                        <p>Checkpointing & message logging.</p>
-                    </div>
+                <div class="grid-2">
+                    <div class="card" onclick="openTopic('fault_tolerance')"><i class="fa-solid fa-heart-pulse"></i><h4>Fault Tolerance</h4><p>Process resilience and masking.</p></div>
+                    <div class="card" onclick="openTopic('recovery')"><i class="fa-solid fa-rotate-left"></i><h4>Recovery</h4><p>Forward vs Backward models.</p></div>
                 </div>
             </div>
 
-            <!-- SLIDE 10: UNIT III SECURITY -->
             <div class="slide">
                 <div class="unit-label">UNIT III: SECURITY</div>
-                <h2 class="section-header">Distributed Security</h2>
-                <div class="grid-2">
-                    <div class="card" onclick="explain('KERBEROS', 'Kerberos ek security guard jaisa hai. Aapko apna password baar-baar nahi dena hota. Aap ek baar login karte hain, Kerberos aapko ek <b>Ticket</b> deta hai, aur wo ticket dikhake aap system ki baaki services use kar sakte hain.')">
-                        <i class="fa-solid fa-key"></i>
-                        <h4>KERBEROS</h4>
-                        <p>Third-party authentication with tickets.</p>
-                    </div>
-                    <div class="card" onclick="explain('Cryptography', 'Data ko chupane ki art. <br>1. <b>Symmetric:</b> Ek hi key se lock/unlock. <br>2. <b>Asymmetric:</b> Public key se lock aur Private key se unlock. <br><b>SSL:</b> Browsers mein encryption ke liye use hota hai.')">
-                        <i class="fa-solid fa-lock"></i>
-                        <h4>SSL & Cryptography</h4>
-                        <p>Encryption, Public keys & Secure sockets.</p>
-                    </div>
+                <h2 class="section-header">Security Architectures</h2>
+                <div class="grid-3">
+                    <div class="card" onclick="openTopic('kerberos')"><i class="fa-solid fa-key"></i><h4>KERBEROS</h4><p>Auth via Ticket Granting Servers.</p></div>
+                    <div class="card" onclick="openTopic('ssl_crypto')"><i class="fa-solid fa-shield-halved"></i><h4>SSL & Crypto</h4><p>Secure transport and encryption.</p></div>
+                    <div class="card" onclick="openTopic('security_mgmt')"><i class="fa-solid fa-user-shield"></i><h4>Security Mgmt</h4><p>Keys, policies and audit.</p></div>
                 </div>
             </div>
 
-            <!-- SLIDE 11: UNIT III ARCHITECTURE -->
             <div class="slide">
-                <div class="unit-label">UNIT III: ARCHITECTURE</div>
-                <h2 class="section-header">Security Architecture</h2>
-                <div class="card" onclick="explain('Distributed Security', 'Distributed security mein focus hota hai Access Control (kaun kya dekh sakta hai) aur Security Management (keys aur policies ko manage karna) par. Isme firewalls aur intrusion detection system bhi aate hain.')">
-                    <h4>Security Architecture</h4>
-                    <p>Management of keys, policies & permissions.</p>
+                <div class="unit-label">UNIT IV: DISTRIBUTED OBJECTS</div>
+                <h2 class="section-header">Middleware Standards</h2>
+                <div class="grid-2">
+                    <div class="card" onclick="openTopic('corba')"><i class="fa-solid fa-object-ungroup"></i><h4>CORBA</h4><p>IDL and Object Request Brokers.</p></div>
+                    <div class="card" onclick="openTopic('dcom')"><i class="fa-solid fa-windows"></i><h4>Distributed COM</h4><p>Microsoft's binary object standard.</p></div>
                 </div>
             </div>
 
-            <!-- SLIDE 12: UNIT IV DFS -->
             <div class="slide">
                 <div class="unit-label">UNIT IV: FILE SYSTEMS</div>
-                <h2 class="section-header">Distributed File Systems</h2>
+                <h2 class="section-header">DFS Design & Sun NFS</h2>
                 <div class="grid-2">
-                    <div class="card" onclick="explain('DFS Goals', 'Ek file system jo network ke across files access karne deta hai. Goals hain: Network Transparency (user ko lage file local hai) aur High Availability (server down ho toh bhi file mil jaye).')">
-                        <h4>Goals & Design</h4>
-                        <p>Naming, Caching & File semantics.</p>
-                    </div>
-                    <div class="card" onclick="explain('Sun NFS', '<b>Network File System:</b> Ye Sun Microsystems ne banaya tha. Isme <b>VFS (Virtual File System)</b> layer hoti hai jo local aur remote files ke beech ka fark mita deti hai.')">
-                        <h4>Sun Network File System</h4>
-                        <p>NFS architecture & VFS abstraction.</p>
-                    </div>
+                    <div class="card" onclick="openTopic('dfs_design')"><i class="fa-solid fa-diagram-project"></i><h4>DFS Design</h4><p>Naming, Naming types and Issues.</p></div>
+                    <div class="card" onclick="openTopic('sun_nfs')"><i class="fa-solid fa-folder-tree"></i><h4>Sun NFS</h4><p>Stateless architecture and VFS.</p></div>
                 </div>
             </div>
 
-            <!-- SLIDE 13: UNIT IV OBJECTS -->
             <div class="slide">
-                <div class="unit-label">UNIT IV: OBJECTS</div>
-                <h2 class="section-header">CORBA & Distributed COM</h2>
-                <div class="grid-2">
-                    <div class="card" onclick="explain('CORBA', 'CORBA ek standard hai jo alag-alag languages (C++, Java) mein likhe gaye objects ko aapas mein baat karne ki ijazat deta hai. Isme <b>ORB (Object Request Broker)</b> message transfer ka zimma leta hai.')">
-                        <h4>CORBA</h4>
-                        <p>Common Object Request Broker Architecture.</p>
-                    </div>
-                    <div class="card" onclick="explain('DCOM', 'Microsoft ka distributed object model. Ye COM objects ko network ke across communicate karne mein madad karta hai. ActiveX isi technology par base hai.')">
-                        <h4>Distributed COM</h4>
-                        <p>Microsoft enterprise object connectivity.</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- SLIDE 14: UNIT V SHARED MEMORY -->
-            <div class="slide">
-                <div class="unit-label">UNIT V: MEMORY</div>
-                <h2 class="section-header">Distributed Shared Memory</h2>
-                <div class="grid-2">
-                    <div class="card" onclick="explain('DSM', 'DSM ek software layer hai jo hardware distributed nodes ko aisa dikhata hai jaise wo ek hi shared memory use kar rahe hon. Programmer ko lagta hai wo normal memory access kar raha hai, par piche data network se move hota hai.')">
-                        <h4>DSM Servers</h4>
-                        <p>Virtual shared memory mapping & pages.</p>
-                    </div>
-                    <div class="card" onclick="explain('Shared Memory Consistency', 'Consistency model decide karta hai ki agar machine A ne memory update ki, toh machine B ko kab dikhega. Release consistency aur Entry consistency iske common examples hain.')">
-                        <h4>Memory Consistency</h4>
-                        <p>Coherence protocols in shared space.</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- SLIDE 15: UNIT V WEB -->
-            <div class="slide">
-                <div class="unit-label">UNIT V: WEB & CO-ORDINATION</div>
-                <h2 class="section-header">WWW & JINI Systems</h2>
-                <div class="grid-2">
-                    <div class="card" onclick="explain('WWW', 'World Wide Web sabse bada document-based distributed system hai. Isme HTTP protocol aur URLs use hote hain content ko locate aur transfer karne ke liye.')">
-                        <i class="fa-solid fa-globe"></i>
-                        <h4>WWW</h4>
-                        <p>Distributed document based systems.</p>
-                    </div>
-                    <div class="card" onclick="explain('JINI', 'JINI Sun Microsystems ka framework hai coordination ke liye. Iska slogan tha "Federation of devices". Isme device plug hote hi network mein discover ho jate hain.')">
-                        <i class="fa-solid fa-plug"></i>
-                        <h4>JINI</h4>
-                        <p>Coordination based service discovery.</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- SLIDE 16: UNIT V IMPLEMENTATIONS -->
-            <div class="slide">
-                <div class="unit-label">UNIT V: MIDDLEWARE</div>
-                <h2 class="section-header">Implementations & OLE</h2>
+                <div class="unit-label">UNIT V: ADVANCED STACK</div>
+                <h2 class="section-header">DSM, Web & JINI</h2>
                 <div class="grid-3">
-                    <div class="card" onclick="explain('Java RMI', 'Java Remote Method Invocation. Ye sirf Java to Java communication ke liye optimized hai. Bahut easy hai implementation mein.')">
-                        <h4>Java RMI</h4>
-                        <p>Object communication for Java Virtual Machines.</p>
-                    </div>
-                    <div class="card" onclick="explain('OLE & ActiveX', 'Microsoft technologies for compound documents. Isse aap Excel sheet ko Word doc mein link kar sakte hain aur wo hamesha sync rahegi.')">
-                        <h4>OLE & ActiveX</h4>
-                        <p>Object Linking, Embedding & Web components.</p>
-                    </div>
-                    <div class="card" onclick="explain('Orbix & Visibrokes', 'Ye famous CORBA implementations hain jo enterprise level par objects ko manage karte hain.')">
-                        <h4>Orbix & Visibrokes</h4>
-                        <p>Commercial CORBA Object Request Brokers.</p>
-                    </div>
-                </div>
-                <div class="card" style="margin-top: 20px;" onclick="explain('SOM', '<b>System Object Model:</b> IBM ki technology jo multi-language binary code compatibility ensure karti thi. Isse ek compiler ka code doosre compiler ke code ke saath kaam kar sakta tha.')">
-                    <h4>SOM (System Object Model)</h4>
-                    <p>Cross-compiler & Multi-language binary OO programming.</p>
+                    <div class="card" onclick="openTopic('dsm')"><i class="fa-solid fa-server"></i><h4>Shared Memory</h4><p>Single address space abstraction.</p></div>
+                    <div class="card" onclick="openTopic('www')"><i class="fa-solid fa-globe"></i><h4>World Wide Web</h4><p>Document distribution protocols.</p></div>
+                    <div class="card" onclick="openTopic('jini')"><i class="fa-solid fa-plug"></i><h4>JINI</h4><p>Service discovery and federation.</p></div>
                 </div>
             </div>
 
-            <!-- SLIDE 17: CONCLUSION -->
+            <div class="slide">
+                <div class="unit-label">UNIT V: IMPLEMENTATIONS</div>
+                <h2 class="section-header">Tools & Programming</h2>
+                <div class="grid-3">
+                    <div class="card" onclick="openTopic('java_rmi')"><i class="fa-brands fa-java"></i><h4>JAVA RMI</h4><p>Java native remote calls.</p></div>
+                    <div class="card" onclick="openTopic('ole_activex')"><i class="fa-solid fa-puzzle-piece"></i><h4>OLE & ActiveX</h4><p>Microsoft embedding standards.</p></div>
+                    <div class="card" onclick="openTopic('som_orbix')"><i class="fa-solid fa-cubes"></i><h4>SOM/Orbix</h4><p>Class libraries and CORBA ORBs.</p></div>
+                </div>
+            </div>
+
             <div class="slide" style="text-align: center; justify-content: center; align-items: center;">
                 <img src="https://drive.google.com/thumbnail?id=1uY7-npxkT8NStw2u79Eyj8Kbhcpxmimb&sz=w500" style="width: 80px; margin-bottom: 20px;">
-                <h1 class="title-huge" style="font-size: 48px; color: var(--neon-purple);">MISSION COMPLETE</h1>
-                <p style="color: var(--text-secondary); margin-top: 20px;">All Distributed Systems Concepts Verified</p>
+                <h1 class="title-huge" style="font-size: 48px; color: var(--neon-purple);">COURSE FINISHED</h1>
+                <p style="color: var(--text-secondary); margin-top: 20px;">Final Verified Syllabus for Examinations.</p>
                 <div style="margin-top: 30px;">
                    <button class="btn" style="width: auto; padding: 0 30px; border-radius: 30px;" onclick="jumpTo(0)">RESTART COURSE <i class="fa-solid fa-rotate-right" style="margin-left: 10px;"></i></button>
                 </div>
             </div>
 
-            <!-- Split Social Links with handles -->
-            <div class="social-left">
-                <a href="https://www.instagram.com/careercue.co/" target="_blank" class="social-item">
-                    <i class="fa-brands fa-instagram"></i>
-                    <span>careercue.co</span>
-                </a>
-            </div>
-
-            <div class="social-right">
-                <a href="https://www.instagram.com/master_rahul.ind/" target="_blank" class="social-item">
-                    <span>master_rahul.ind</span>
-                    <i class="fa-brands fa-instagram"></i>
-                </a>
-            </div>
+            <!-- Social Links -->
+            <div class="social-left"><a href="https://www.instagram.com/careercue.co/" target="_blank" class="social-item"><i class="fa-brands fa-instagram"></i><span>careercue.co</span></a></div>
+            <div class="social-right"><a href="https://www.instagram.com/master_rahul.ind/" target="_blank" class="social-item"><span>master_rahul.ind</span><i class="fa-brands fa-instagram"></i></a></div>
 
             <div class="controls">
                 <button class="btn" onclick="prevSlide()"><i class="fa-solid fa-chevron-left"></i></button>
                 <button class="btn" onclick="nextSlide()"><i class="fa-solid fa-chevron-right"></i></button>
             </div>
-
             <div class="progress-indicator" id="progress"></div>
         </main>
     </div>
 
     <script>
-        // Explanation Modal Logic
-        function explain(title, text) {
-            document.getElementById('modal-title').innerText = title;
-            document.getElementById('modal-body').innerHTML = text;
+        const topicData = {
+            goals: {
+                title: "Goals of Distributed Systems",
+                summary: "Distributed system ka goal hai ki user ko aisa lage ki wo ek single computer chala raha hai, bhale hi data 10 alag locations par ho. Isse <b>Transparency</b> kehte hain.",
+                details: `
+                    <h4>Core Exam Properties:</h4>
+                    <ul>
+                        <li><b>Transparency (Hiding Distribution):</b> Includes Access (representation), Location, Migration, Replication, Concurrency, and Failure transparency.</li>
+                        <li><b>Openness:</b> Extensibility of the system via standard Interface Definition Languages (IDLs).</li>
+                        <li><b>Scalability Dimensions:</b>
+                            <ul>
+                                <li><i>Size Scalability:</i> Adding more users without performance bottleneck.</li>
+                                <li><i>Geographical Scalability:</i> System works despite distance/latency.</li>
+                                <li><i>Administrative Scalability:</i> Easy management across different organizations.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <div class='modal-diagram'>
+                        <svg width='300' height='100' viewBox='0 0 300 100'>
+                            <rect x='10' y='60' width='80' height='30' fill='none' stroke='var(--neon-blue)'/>
+                            <text x='50' y='80' fill='#fff' font-size='10' text-anchor='middle'>User</text>
+                            <line x1='90' y1='75' x2='120' y2='40' stroke='var(--neon-purple)'/>
+                            <rect x='110' y='10' width='180' height='40' fill='rgba(0,242,255,0.05)' stroke='var(--neon-blue)'/>
+                            <text x='200' y='35' fill='var(--neon-blue)' font-size='10' text-anchor='middle'>Transparency Layer</text>
+                        </svg>
+                        <div class='diagram-caption'>Hiding complexity from User</div>
+                    </div>
+                `
+            },
+            hardware: {
+                title: "Hardware Architecture",
+                summary: "Basically CPUs kaise connect hote hain. Tightly coupled matlab shared memory, loosely coupled matlab message passing.",
+                details: `
+                    <h4>Architectural Classification:</h4>
+                    <b>1. Multiprocessors (Tightly Coupled):</b>
+                    <ul>
+                        <li>CPUs share a single physical address space.</li>
+                        <li><i>Bus-based:</i> All CPUs connected to a single high-speed bus (Limited scalability).</li>
+                        <li><i>Switched:</i> Uses crossbar switches or omega networks for interconnect.</li>
+                    </ul>
+                    <b>2. Multicomputers (Loosely Coupled):</b>
+                    <ul>
+                        <li>Each node is an independent computer with local RAM.</li>
+                        <li>Communication happens via explicit Message Passing over a network.</li>
+                        <li><i>Homogeneous:</i> Nodes are identical (Jaise Cluster Computing).</li>
+                        <li><i>Heterogeneous:</i> Different nodes/OS (Jaise Grid Computing).</li>
+                    </ul>
+                    <div class='modal-diagram'>
+                        <svg width='300' height='100' viewBox='0 0 300 100'>
+                            <rect x='10' y='10' width='50' height='30' stroke='var(--neon-blue)' fill='none'/>
+                            <text x='35' y='30' fill='#fff' font-size='8' text-anchor='middle'>CPU 1</text>
+                            <rect x='80' y='10' width='50' height='30' stroke='var(--neon-blue)' fill='none'/>
+                            <text x='105' y='30' fill='#fff' font-size='8' text-anchor='middle'>CPU 2</text>
+                            <line x1='35' y1='40' x2='35' y2='70' stroke='var(--neon-purple)'/>
+                            <line x1='105' y1='40' x2='105' y2='70' stroke='var(--neon-purple)'/>
+                            <rect x='10' y='70' width='120' height='20' stroke='var(--neon-green)' fill='none'/>
+                            <text x='70' y='83' fill='var(--neon-green)' font-size='8' text-anchor='middle'>Shared RAM</text>
+                        </svg>
+                        <div class='diagram-caption'>Tightly Coupled System</div>
+                    </div>
+                `
+            },
+            software: {
+                title: "Software Concepts",
+                summary: "DOS acts as a single system, NOS manages independent nodes, Middleware is the bridge.",
+                details: `
+                    <h4>Comparison for Exam:</h4>
+                    <ul>
+                        <li><b>DOS (Distributed Operating System):</b> Manages multiprocessors as a single machine. Low transparency gap, high coupling.</li>
+                        <li><b>NOS (Network Operating System):</b> Nodes have local OS and network utilities (Jaise SSH, FTP). High heterogeneity, loose coupling.</li>
+                        <li><b>Middleware-based Systems:</b> A layer between applications and NOS that provides high-level distribution services (Jaise naming, security, transactions). <i>Goal:</i> Best of both worlds.</li>
+                    </ul>
+                `
+            },
+            client_server: {
+                title: "The Client-Server Model",
+                summary: "Foundation of all: Browser requests (Client) and Website responds (Server).",
+                details: `
+                    <h4>Architectural Tiers:</h4>
+                    <ul>
+                        <li><b>Two-Tier Architecture:</b> Direct client-server connection (Jaise Desktop app to Database).</li>
+                        <li><b>Three-Tier Architecture:</b> User Interface -> Application Logic -> Database.</li>
+                        <li><b>Multi-Tier:</b> Logic layer split into multiple distributed services (Microservices).</li>
+                    </ul>
+                    <h4>Horizontal vs Vertical Distribution:</h4>
+                    <ul>
+                        <li><i>Vertical:</i> Splitting functionality across logically different layers.</li>
+                        <li><i>Horizontal:</i> Mirroring the same server across multiple machines for load balancing.</li>
+                    </ul>
+                `
+            },
+            rpc_rmi: {
+                title: "RPC & RMI Mechanisms",
+                summary: "Maan lo aapne dost ko phone kiya calculation ke liye, network ka load stub/skeleton handle karenge.",
+                details: `
+                    <h4>5 Critical Steps of RPC:</h4>
+                    1. <b>Client Stub:</b> Collects parameters and packs them into a message (Marshaling).<br>
+                    2. <b>Message Transmission:</b> Network layer delivers the packet to the server.<br>
+                    3. <b>Server Skeleton:</b> Unpacks the message (Unmarshaling) and extracts params.<br>
+                    4. <b>Procedure Execution:</b> Server runs the actual local function.<br>
+                    5. <b>Return Path:</b> Results are marshaled back to the client stub.
+                    <div class='modal-diagram'>
+                        <svg width='300' height='80' viewBox='0 0 300 80'>
+                            <rect x='10' y='20' width='60' height='40' stroke='var(--neon-blue)' fill='none'/>
+                            <text x='40' y='45' fill='#fff' font-size='10' text-anchor='middle'>Stub</text>
+                            <path d='M70 40 L110 40' stroke='var(--neon-purple)' marker-end='url(#arrow)'/>
+                            <path d='M190 40 L230 40' stroke='var(--neon-purple)'/>
+                            <rect x='230' y='20' width='60' height='40' stroke='var(--neon-blue)' fill='none'/>
+                            <text x='260' y='45' fill='#fff' font-size='10' text-anchor='middle'>Skeleton</text>
+                        </svg>
+                        <div class='diagram-caption'>Marshaling -> Transfer -> Unmarshaling</div>
+                    </div>
+                `
+            },
+            comm_oriented: {
+                title: "Messaging & Streams",
+                summary: "Messaging persistent queues ke liye, Streams video media ke liye.",
+                details: `
+                    <h4>1. Message-Oriented Communication:</h4>
+                    Uses <b>Message Oriented Middleware (MOM)</b>. Supports persistent (queue based) and transient communication. Sender doesn't wait for a reply (Asynchronous).
+                    <h4>2. Stream-Oriented Communication:</h4>
+                    Handles continuous media (Audio/Video).
+                    <ul>
+                        <li><i>Quality of Service (QoS):</i> Guarantees regarding Bandwidth, Latency, and Jitter.</li>
+                        <li><i>Synchronization:</i> Maintaining relationship between related streams (Jaise Audio and Video).</li>
+                    </ul>
+                `
+            },
+            threads: {
+                title: "Threads in Distributed Systems",
+                summary: "Server threads use karta hai taaki multiple log ek saath access karein aur server hang na ho.",
+                details: `
+                    <h4>Threads vs Processes for Exam:</h4>
+                    <ul>
+                        <li><b>Efficiency:</b> Lower context switching time as memory is shared.</li>
+                        <li><b>Concurrency:</b> Crucial for distributed servers handling multiple network requests simultaneously.</li>
+                        <li><b>Implementation:</b> User-level threads (fast, library-based) vs Kernel-level threads (better scheduling, handles blocking calls).</li>
+                    </ul>
+                `
+            },
+            server_design: {
+                title: "Server Design Issues",
+                summary: "Server ko concurrent ya iterative kaise rakhein? Stateful matlab yaad rakhna, Stateless matlab bhul jana.",
+                details: `
+                    <h4>Key Design Decisions:</h4>
+                    <ul>
+                        <li><b>Iterative:</b> Handles one request at a time (Inefficient).</li>
+                        <li><b>Concurrent:</b> Uses thread pool or process per request.</li>
+                        <li><b>Stateless vs Stateful:</b> 
+                            <ul>
+                                <li><i>Stateless:</i> No client history stored. Robust failure recovery.</li>
+                                <li><i>Stateful:</i> Session info stored. Faster for complex logic but hard to recover if server crashes.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                `
+            },
+            migration: {
+                title: "Code Migration Models",
+                summary: "Bada data download karne se behtar hai program wahan bhej do (Jaise agent).",
+                details: `
+                    <h4>Why migrate code?</h4>
+                    Improve resource utilization and minimize network latency.
+                    <h4>Mobility Models:</h4>
+                    <ul>
+                        <li><b>Weak Mobility:</b> Transfer only the Code segment. The target starts fresh.</li>
+                        <li><b>Strong Mobility:</b> Transfer Code + Execution Context (Stack/Heap). Target resumes from exactly where it left off.</li>
+                    </ul>
+                    <div class='modal-diagram'>
+                        <svg width='200' height='100' viewBox='0 0 200 100'>
+                            <rect x='10' y='10' width='80' height='80' stroke='var(--neon-blue)' fill='none'/>
+                            <text x='50' y='30' fill='#fff' font-size='8' text-anchor='middle'>Code</text>
+                            <text x='50' y='50' fill='var(--neon-purple)' font-size='8' text-anchor='middle'>Stack</text>
+                            <text x='50' y='70' fill='var(--neon-purple)' font-size='8' text-anchor='middle'>Data</text>
+                            <line x1='100' y1='50' x2='150' y2='50' stroke='var(--neon-green)' marker-end='url(#arrow)'/>
+                        </svg>
+                        <div class='diagram-caption'>Strong Mobility Context Transfer</div>
+                    </div>
+                `
+            },
+            clocks: {
+                title: "Clock Sync Logic",
+                summary: "Network clocks drift hoti hain, unhe coordinate karna events order karne ke liye.",
+                details: `
+                    <h4>Physical vs Logical Clocks:</h4>
+                    <ul>
+                        <li><b>Cristian's Algorithm:</b> External time source based synchronization.</li>
+                        <li><b>Berkeley Algorithm:</b> Internal master node calculates average time and sends offsets to slaves.</li>
+                        <li><b>Lamport Timestamps (Logical):</b> Defines a <i>Partial Order</i> of events using the "Happens-before" ($\rightarrow$) relation. If $a \rightarrow b$, then $C(a) < C(b)$.</li>
+                    </ul>
+                    <div class='modal-diagram'>
+                        <svg width='250' height='80' viewBox='0 0 250 80'>
+                            <line x1='20' y1='20' x2='220' y2='20' stroke='var(--neon-blue)'/>
+                            <text x='20' y='35' fill='#fff' font-size='8'>Node A: T=1</text>
+                            <line x1='40' y1='20' x2='120' y2='50' stroke='var(--neon-purple)' marker-end='url(#arrow)'/>
+                            <line x1='20' y1='50' x2='220' y2='50' stroke='var(--neon-blue)'/>
+                            <text x='120' y='65' fill='#fff' font-size='8'>Node B: Adjust T</text>
+                        </svg>
+                        <div class='diagram-caption'>Causal ordering between nodes</div>
+                    </div>
+                `
+            },
+            mutex: {
+                title: "Mutual Exclusion",
+                summary: "Ensuring one process accesses shared resource at a time (Printer rule).",
+                details: `
+                    <h4>Distributed Algorithms:</h4>
+                    <ul>
+                        <li><b>Centralized:</b> Simple, single point of failure. Coordinator uses a queue.</li>
+                        <li><b>Ricart-Agrawala (Distributed):</b> Permission based. A process sends timestamps to all; enters CS only after everyone grants permission.</li>
+                        <li><b>Token Ring:</b> A token circulates a logical ring. Hold token = Access resource.</li>
+                    </ul>
+                `
+            },
+            bully_ring: {
+                title: "Election Algorithms",
+                summary: "Jab neta fail ho jaye, naya neta chunne ke tareeke.",
+                details: `
+                    <h4>1. Bully Algorithm:</h4>
+                    <ul>
+                        <li>Process P detects failure and sends ELECTION to all nodes with <b>higher IDs</b>.</li>
+                        <li>If a higher node replies OK, P stops. If no one replies, P wins and sends COORDINATOR to all lower IDs.</li>
+                    </ul>
+                    <h4>2. Ring Algorithm:</h4>
+                    <ul>
+                        <li>Election message passes along a logical ring collecting active node IDs.</li>
+                        <li>After a full cycle, the highest ID in the list is elected.</li>
+                    </ul>
+                `
+            },
+            transactions: {
+                title: "Distributed Transactions (2PC)",
+                summary: "Ensuring ACID: Sab commit karein ya sab abort.",
+                details: `
+                    <h4>Two-Phase Commit Protocol:</h4>
+                    <ul>
+                        <li><b>Phase 1 (Voting):</b> Coordinator sends "Prepare" to all participants. Participants log it and vote "Yes" or "No".</li>
+                        <li><b>Phase 2 (Execution):</b> If <b>all</b> voted Yes, coordinator sends "Global Commit". If any node voted No or timed out, sends "Global Abort".</li>
+                    </ul>
+                    <i>Blocking Problem:</i> If the coordinator fails, participants may wait indefinitely (solved by 3PC).
+                `
+            },
+            replication: {
+                title: "Object Replication",
+                summary: "Data copies for reliability. Agar ek gaya, doosra zinda hai.",
+                details: `
+                    <h4>Why replicate?</h4>
+                    Increase <b>Availability</b> and decrease <b>Latency</b>.
+                    <h4>Propagation Schemes:</h4>
+                    <ul>
+                        <li><b>Pull:</b> Client asks for updates (Easy, might get stale data).</li>
+                        <li><b>Push:</b> Server pushes updates (Higher overhead, high consistency).</li>
+                        <li><b>Invalidation:</b> Notify copies that data is old, don't send new data yet.</li>
+                    </ul>
+                `
+            },
+            consistency: {
+                title: "Consistency Models",
+                summary: "Update sabko kab dikhega. Store focused vs User focused logic.",
+                details: `
+                    <h4>1. Data-Centric Models:</h4>
+                    Focus on the global state of the data store.
+                    <ul>
+                        <li><i>Strict:</i> Global real-time ordering (Impossible).</li>
+                        <li><i>Sequential:</i> All operations consistent with some global order.</li>
+                        <li><i>Causal:</i> Only causally related operations must be ordered.</li>
+                    </ul>
+                    <h4>2. Client-Centric Models:</h4>
+                    Focus on the view of an individual client session.
+                    <ul>
+                        <li><i>Monotonic Reads:</i> If I read a version, I never see an older version later.</li>
+                        <li><i>Read-Your-Writes:</i> I always see my own latest update immediately.</li>
+                    </ul>
+                `
+            },
+            fault_tolerance: {
+                title: "Fault Tolerance Resilience",
+                summary: "Errors handle karna. Byzantine failures (jhoot bolna) handle karna tough hai.",
+                details: `
+                    <h4>Failure Models:</h4>
+                    <ul>
+                        <li><b>Crash Failure:</b> Node stops working.</li>
+                        <li><b>Omission Failure:</b> Node misses messages.</li>
+                        <li><b>Timing Failure:</b> Node works but is too slow.</li>
+                        <li><b>Byzantine Failure:</b> Node lies or sends malicious data.</li>
+                    </ul>
+                    <i>Masking:</i> Using <b>$k$-fault tolerance</b>. For Byzantine faults, you need $3k+1$ nodes to mask $k$ failures.
+                `
+            },
+            recovery: {
+                title: "System Recovery",
+                summary: "Fail hone ke baad state restore karna.",
+                details: `
+                    <h4>Methods:</h4>
+                    <ul>
+                        <li><b>Backward Recovery:</b> Restore from a <b>Checkpoint</b> (Stable storage). Issues: Domino effect.</li>
+                        <li><b>Forward Recovery:</b> Move the system to a new valid state using redundant information.</li>
+                        <li><b>Message Logging:</b> Combination of checkpointing and replaying messages to reach current state.</li>
+                    </ul>
+                `
+            },
+            kerberos: {
+                title: "KERBEROS Flow",
+                summary: "Trusted wristband (Ticket) security service.",
+                details: `
+                    <h4>Handshake Protocol:</h4>
+                    1. <b>Login:</b> User asks AS (Auth Server) for a TGT (Ticket Granting Ticket).<br>
+                    2. <b>TGS:</b> User shows TGT to TGS to get a service-specific ticket.<br>
+                    3. <b>Service:</b> User shows service ticket to the actual server/verifier to gain access.<br>
+                    <i>Goal:</i> Never send plain-text passwords across the network.
+                    <div class='modal-diagram'>
+                        <svg width='280' height='100' viewBox='0 0 280 100'>
+                            <circle cx='40' cy='50' r='20' fill='none' stroke='var(--neon-blue)'/>
+                            <text x='40' y='53' fill='#fff' font-size='8' text-anchor='middle'>User</text>
+                            <rect x='110' y='10' width='60' height='30' stroke='var(--neon-purple)' fill='none'/>
+                            <text x='140' y='28' fill='#fff' font-size='8' text-anchor='middle'>AS / TGS</text>
+                            <line x1='60' y1='40' x2='110' y2='25' stroke='var(--neon-purple)'/>
+                        </svg>
+                        <div class='diagram-caption'>TGT Based Authentication Architecture</div>
+                    </div>
+                `
+            },
+            ssl_crypto: {
+                title: "SSL & Cryptography",
+                summary: "Digital locks to protect data flow.",
+                details: `
+                    <h4>SSL Handshake:</h4>
+                    Negotiates encryption algorithms and authenticates the server via Certificates.
+                    <h4>Cryptography:</h4>
+                    <ul>
+                        <li><b>Symmetric (Private Key):</b> One key for both. Fast, used for bulk data.</li>
+                        <li><b>Asymmetric (Public/Private):</b> Different keys. Used for safe login/key exchange.</li>
+                        <li><b>DigSig:</b> Digital Signatures ensure integrity and non-repudiation.</li>
+                    </ul>
+                `
+            },
+            security_mgmt: {
+                title: "Security Management",
+                summary: "Keys, authorization aur auditing distributed environments mein.",
+                details: `
+                    <ul>
+                        <li><b>Key Management:</b> Secure distribution of session keys via Key Distribution Centers (KDC).</li>
+                        <li><b>Authorization:</b> Use of Access Control Lists (ACLs) vs. Capabilities (Tickets).</li>
+                        <li><b>Firewalls:</b> Protecting the internal distributed network from external threats.</li>
+                    </ul>
+                `
+            },
+            corba: {
+                title: "CORBA Standard",
+                summary: "Common bridge for C++ and Java objects.",
+                details: `
+                    <h4>Architecture:</h4>
+                    <ul>
+                        <li><b>ORB (Object Request Broker):</b> The communication bus.</li>
+                        <li><b>IDL (Interface Definition Language):</b> Language-neutral interface definitions.</li>
+                        <li><b>SII vs DII:</b> Static vs. Dynamic Invocation Interfaces.</li>
+                        <li><b>Object Adapter (POA):</b> Connects ORB to actual implementation code.</li>
+                    </ul>
+                `
+            },
+            dcom: {
+                title: "Distributed COM",
+                summary: "Microsoft's proprietary remote object technology.",
+                details: `
+                    Microsoft's binary-level architecture. Provides remote object references, location transparency, and reference counting. Foundational for legacy Windows enterprise networks.
+                `
+            },
+            dfs_design: {
+                title: "DFS Design Issues",
+                summary: "Naming (finding file) and Caching (speed) management.",
+                details: `
+                    <h4>Design Factors:</h4>
+                    <ul>
+                        <li><b>Naming:</b> Location transparency (hiding server name) vs. Location independence (files can move).</li>
+                        <li><b>Caching:</b> Client-side caching (Write-through vs. Write-back).</li>
+                        <li><b>Semantics:</b> Unix semantics (immediate visibility) vs. Session semantics (visibility only on close).</li>
+                    </ul>
+                `
+            },
+            sun_nfs: {
+                title: "Sun Network File System",
+                summary: "Standard remote file system architecture.",
+                details: `
+                    <h4>NFS Layers:</h4>
+                    <ul>
+                        <li><b>VFS (Virtual File System):</b> Abstract layer handling both local and remote files.</li>
+                        <li><b>RPC Protocol:</b> All NFS commands are synchronous RPCs.</li>
+                        <li><b>Statelessness:</b> Server doesn't track open files or clients. If server crashes, no state is lost. Simple and robust.</li>
+                    </ul>
+                    <div class='modal-diagram'>
+                        <svg width='250' height='100' viewBox='0 0 250 100'>
+                            <rect x='50' y='10' width='150' height='20' fill='none' stroke='var(--neon-blue)'/>
+                            <text x='125' y='23' fill='var(--neon-blue)' font-size='8' text-anchor='middle'>System Calls</text>
+                            <rect x='50' y='30' width='150' height='20' fill='rgba(188,19,254,0.1)' stroke='var(--neon-purple)'/>
+                            <text x='125' y='43' fill='var(--neon-purple)' font-size='8' text-anchor='middle'>VFS Layer</text>
+                            <line x1='80' y1='50' x2='80' y2='80' stroke='var(--neon-green)'/>
+                            <text x='80' y='93' fill='var(--neon-green)' font-size='8' text-anchor='middle'>Local FS</text>
+                            <line x1='170' y1='50' x2='170' y2='80' stroke='var(--neon-green)'/>
+                            <text x='170' y='93' fill='var(--neon-green)' font-size='8' text-anchor='middle'>NFS Client</text>
+                        </svg>
+                        <div class='diagram-caption'>The Sun NFS Architecture Stack</div>
+                    </div>
+                `
+            },
+            dsm: {
+                title: "Distributed Shared Memory",
+                summary: "Globally shared address space across nodes.",
+                details: `
+                    <h4>The DSM Server:</h4>
+                    Maps virtual address pages across physically distributed RAM.
+                    <ul>
+                        <li><b>Page Fault:</b> If a node accesses memory not locally present, the DSM manager fetches the page over the network.</li>
+                        <li><b>Data Granularity:</b> Trade-off between network load (big pages) and false sharing (small objects).</li>
+                    </ul>
+                `
+            },
+            dsm_consistency: {
+                title: "DSM Consistency Models",
+                summary: "Sync protocols for shared memory memory performance.",
+                details: `
+                    <ul>
+                        <li><b>Release Consistency:</b> Sync happens only when a node releases a lock.</li>
+                        <li><b>Entry Consistency:</b> Sync happens only when a node acquires a lock.</li>
+                        <li><b>Scope Consistency:</b> Sync only within a specific session scope.</li>
+                    </ul>
+                `
+            },
+            www: {
+                title: "World Wide Web",
+                summary: "Largest global document distribution system.",
+                details: `
+                    <h4>Document Distribution:</h4>
+                    Uses HTTP (Stateless protocol) and URLs (Location transparency). Extensive use of <b>Caching Proxies</b> and <b>CDNs</b> (Content Delivery Networks) to distribute traffic globally.
+                `
+            },
+            jini: {
+                title: "JINI Coordination",
+                summary: "Service discovery tech for plug-and-play gadgets.",
+                details: `
+                    <h4>Federation Principles:</h4>
+                    Uses a <b>Lookup Service</b>. Devices join the network, upload their proxy objects to the lookup service, and other clients download those proxies to communicate. No drivers needed.
+                `
+            },
+            java_rmi: {
+                title: "JAVA RMI Implementation",
+                summary: "Pure Java remote object invocation.",
+                details: `
+                    <h4>Components:</h4>
+                    <ul>
+                        <li><b>RMI Registry:</b> Naming service to find remote objects.</li>
+                        <li><b>Proxy (Stub) & Dispatcher (Skeleton):</b> Handle serialization and transport.</li>
+                        <li><b>Serializable:</b> Objects must implement this to be passed over the network.</li>
+                    </ul>
+                `
+            },
+            ole_activex: {
+                title: "OLE & ActiveX",
+                summary: "Microsoft embedding standards for documents and web.",
+                details: `
+                    <b>OLE (Object Linking & Embedding):</b> Allows documents (Excel) to be embedded or linked in others (Word).<br>
+                    <b>ActiveX:</b> Extension for the web; reusable UI components (COM based) that run in browsers.
+                `
+            },
+            som_orbix: {
+                title: "SOM, Orbix & Visibrokes",
+                summary: "Enterprise middleware tools for large scale systems.",
+                details: `
+                    <b>SOM (System Object Model):</b> IBM's class library technology for multi-language object binary compatibility.<br>
+                    <b>Orbix/Visibrokes:</b> High-performance CORBA implementations. Support server clusters, session persistence, and enterprise security.
+                `
+            }
+        };
+
+        function openTopic(id) {
+            const data = topicData[id];
+            const body = document.getElementById('modal-body');
+            if(!data) {
+                body.innerHTML = "<h3>Topic Ready!</h3><p>Ye technical notes complete hain. Study karein!</p>";
+            } else {
+                body.innerHTML = `
+                    <h3>${data.title}</h3>
+                    <div class="concept-summary">
+                        <h4>Quick Concept (Hinglish)</h4>
+                        <p>${data.summary}</p>
+                    </div>
+                    <div class="exam-details">
+                        <h4>Detailed Exam Notes</h4>
+                        <div style="color: var(--text-secondary);">${data.details}</div>
+                    </div>
+                `;
+            }
             document.getElementById('explanation-modal').style.display = 'flex';
         }
 
-        function closeModal() {
-            document.getElementById('explanation-modal').style.display = 'none';
-        }
+        function closeModal() { document.getElementById('explanation-modal').style.display = 'none'; }
 
-        // Particle Background
+        // Particles Logic
         const canvas = document.getElementById('bg-canvas');
         const ctx = canvas.getContext('2d');
         let particles = [];
         function initCanvas() {
             canvas.width = window.innerWidth; canvas.height = window.innerHeight;
             particles = [];
-            for(let i=0; i<100; i++) {
-                particles.push({ x: Math.random() * canvas.width, y: Math.random() * canvas.height, vx: (Math.random() - 0.5) * 0.3, vy: (Math.random() - 0.5) * 0.3, size: Math.random() * 1.5 });
-            }
+            for(let i=0; i<60; i++) particles.push({ x: Math.random()*canvas.width, y: Math.random()*canvas.height, vx: (Math.random()-0.5)*0.2, vy: (Math.random()-0.5)*0.2, size: Math.random()*1.5 });
         }
         function draw() {
             ctx.clearRect(0, 0, canvas.width, canvas.height); ctx.fillStyle = '#00f2ff';
-            particles.forEach(p => { p.x += p.vx; p.y += p.vy; if(p.x < 0 || p.x > canvas.width) p.vx *= -1; if(p.y < 0 || p.y > canvas.height) p.vy *= -1; ctx.beginPath(); ctx.arc(p.x, p.y, p.size, 0, Math.PI*2); ctx.fill(); });
+            particles.forEach(p => { p.x+=p.vx; p.y+=p.vy; if(p.x<0||p.x>canvas.width) p.vx*=-1; if(p.y<0||p.y>canvas.height) p.vy*=-1; ctx.beginPath(); ctx.arc(p.x, p.y, p.size, 0, Math.PI*2); ctx.fill(); });
             requestAnimationFrame(draw);
         }
         window.addEventListener('resize', initCanvas); initCanvas(); draw();
 
-        // Slide Navigation
+        // Navigation Logic
         let currentIdx = 0;
         const slides = document.querySelectorAll('.slide');
         const navItems = document.querySelectorAll('.nav-item');
         const progress = document.getElementById('progress');
         const sidebar = document.getElementById('sidebar');
 
-        function toggleMenu() { sidebar.classList.toggle('open'); const icon = document.querySelector('#menuToggle i'); icon.classList.toggle('fa-bars'); icon.classList.toggle('fa-xmark'); }
+        function toggleMenu() { sidebar.classList.toggle('open'); }
 
         function updateDisplay() {
+            if (currentIdx < 0 || currentIdx >= slides.length) return;
             slides.forEach((s, i) => s.classList.toggle('active', i === currentIdx));
+            
             let activeNavIdx = 0;
-            if (currentIdx >= 1) activeNavIdx = 1; if (currentIdx >= 4) activeNavIdx = 2; if (currentIdx >= 8) activeNavIdx = 3; if (currentIdx >= 12) activeNavIdx = 4; if (currentIdx >= 15) activeNavIdx = 5; if (currentIdx >= 17) activeNavIdx = 0;
+            if (currentIdx >= 1 && currentIdx <= 2) activeNavIdx = 1;
+            if (currentIdx >= 3 && currentIdx <= 5) activeNavIdx = 2;
+            if (currentIdx >= 6 && currentIdx <= 8) activeNavIdx = 3;
+            if (currentIdx >= 9 && currentIdx <= 10) activeNavIdx = 4;
+            if (currentIdx >= 11 && currentIdx <= 13) activeNavIdx = 5;
+
             navItems.forEach((n, i) => n.classList.toggle('active', i === activeNavIdx));
             progress.style.width = ((currentIdx + 1) / slides.length) * 100 + '%';
             if (window.innerWidth <= 1024) sidebar.classList.remove('open');
-            slides[currentIdx].scrollTop = 0;
+            
+            const activeSlide = slides[currentIdx];
+            if (activeSlide) activeSlide.scrollTop = 0;
         }
 
         function nextSlide() { if(currentIdx < slides.length -1) { currentIdx++; updateDisplay(); } }
         function prevSlide() { if(currentIdx > 0) { currentIdx--; updateDisplay(); } }
-        function jumpTo(idx) { currentIdx = idx; updateDisplay(); }
-        document.addEventListener('keydown', (e) => { if(e.key === 'ArrowRight' || e.key === ' ') nextSlide(); if(e.key === 'ArrowLeft') prevSlide(); });
+        function jumpTo(idx) { if (idx >= 0 && idx < slides.length) { currentIdx = idx; updateDisplay(); } }
+
+        document.addEventListener('keydown', (e) => {
+            if(e.key === 'ArrowRight' || e.key === ' ') nextSlide();
+            if(e.key === 'ArrowLeft') prevSlide();
+            if(e.key === 'Escape') closeModal();
+        });
+        updateDisplay();
     </script>
 </body>
 </html>
